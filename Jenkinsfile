@@ -25,8 +25,8 @@ pipeline {
            steps {
               
                 sh 'docker build -t samplewebapp:$BUILD_NUMBER .' 
-                sh 'docker tag samplewebapp:$BUILD_NUMBER dharaneeshd/samplewebapp:$BUILD_NUMBER'
-                //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
+                sh 'docker tag samplewebapp:$BUILD_NUMBER dharaneeshd/pipeline:$BUILD_NUMBER'
+                
                
           }
         }
@@ -42,7 +42,18 @@ pipeline {
             }
         }
  
-
+stage('push docker image to docker hub') {
+             
+            steps 
+			{
+                sh "docker login -u dharaneeshd -p Devops@1234"
+		sh "docker push dharaneeshd/pipeline:$BUILD_NUMBER"
+				
+ 
+            }
+        }
+	 
+	 
     }
 	}
     
