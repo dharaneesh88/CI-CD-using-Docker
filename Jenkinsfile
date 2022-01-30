@@ -9,7 +9,7 @@ pipeline {
       stage('checkout') {
            steps {
              
-                git branch: 'master', url: 'https://github.com/devops4solutions/CI-CD-using-Docker.git'
+                git branch: 'master', url: 'https://github.com/dharaneesh88/CI-CD-using-Docker.git'
              
           }
         }
@@ -24,8 +24,8 @@ pipeline {
   stage('Docker Build and Tag') {
            steps {
               
-                sh 'docker build -t samplewebapp:latest .' 
-                sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:latest'
+                sh 'docker build -t samplewebapp:$BUILD_NUMBER .' 
+                sh 'docker tag samplewebapp dharaneeshd/samplewebapp:$BUILD_NUMBER'
                 //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
                
           }
@@ -35,7 +35,7 @@ pipeline {
           
             steps {
         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push nikhilnidhi/samplewebapp:latest'
+          sh  'docker push dharaneeshd/samplewebapp:$BUILD_NUMBER'
         //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
         }
                   
