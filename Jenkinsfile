@@ -31,16 +31,16 @@ pipeline {
           }
         }
      
-  stage('Publish image to Docker Hub') {
+ // stage('Publish image to Docker Hub') {
           
-            steps {
+   //         steps {
         withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push dharaneeshd/samplewebapp:$BUILD_NUMBER'
+     //     sh  'docker push dharaneeshd/samplewebapp:$BUILD_NUMBER'
         //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
-        }
+       // }
                   
-          }
-        }
+         // }
+        //}
      
       stage('Run Docker container on Jenkins Agent') {
              
@@ -50,13 +50,13 @@ pipeline {
  
             }
         }
- stage('Run Docker container on remote hosts') {
+ //stage('Run Docker container on remote hosts') {
              
-            steps {
-                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+   //         steps {
+     //           sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
  
-            }
-        }
+       //     }
+        //}
     }
 	}
     
