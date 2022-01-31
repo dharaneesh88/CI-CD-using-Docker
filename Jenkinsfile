@@ -46,7 +46,7 @@ stage('push docker image to docker hub') {
              
             steps 
 			{
-		withDockerRegistry([ credentialsid: "dockerhub_id",url: "" ]){
+		withDockerRegistry([ credentialsId: "dockerhub_id",url: "" ]){
            
 		sh "docker push dharaneeshd/pipeline:$BUILD_NUMBER"
 				
