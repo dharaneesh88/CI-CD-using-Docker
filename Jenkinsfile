@@ -46,10 +46,11 @@ stage('push docker image to docker hub') {
              
             steps 
 			{
-                sh "docker login -u dharaneeshd -p Devops@1234"
+		withDockerRegistry([ credentialsid: "dockerhub_id",url: "" ]){
+           
 		sh "docker push dharaneeshd/pipeline:$BUILD_NUMBER"
 				
- 
+				} 
             }
         }
 	 
